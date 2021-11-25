@@ -24,7 +24,7 @@ our cool lab 8 yooooooo
 9. Проверили работоспособность всех кнопок через окно «Logcat»;
 
 
-``Kotlin
+```Kotlin
 package com.example.myapplication
 
 import android.content.ContentValues
@@ -126,10 +126,10 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
         dbHelper?.close(); // закрываем соединение с БД
     }
 }
-``
+```
 
 
-``Java
+```Java
 package com.example.myapplication;
 
 import android.content.Context;
@@ -162,5 +162,7 @@ public class DBHelper extends SQLiteOpenHelper
         onCreate(db);
     }
 }
-``
+```
+
+![](Screenshot_2021-11-25-13-15-06.png)
 
