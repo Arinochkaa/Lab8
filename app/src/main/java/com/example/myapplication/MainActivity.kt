@@ -15,7 +15,7 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
         setContentView(R.layout.activity_main)
         dbHelper = DBHelper(this)
 
-        super.onCreate(savedInstanceState)
+        this.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
         val add = findViewById<Button>(R.id.add)
         add.setOnClickListener(this)
@@ -55,7 +55,7 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
                     null, null,
                     null, null, null
                 ); // все поля без сортировки и группировки
-                if (cursor.moveToFirst()) {
+                if (cursor!!.moveToFirst()) {
                     val idIndex = cursor.getColumnIndex(DBHelper.KEY_ID);
                     val nameIndex = cursor.getColumnIndex(DBHelper.KEY_NAME);
                     val emailIndex = cursor.getColumnIndex(DBHelper.KEY_MAIL);
@@ -73,12 +73,12 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
             }
 
             R.id.clear -> {
-                database.delete(DBHelper.TABLE_PERSONS, null, null);
+                database!!.delete(DBHelper.TABLE_PERSONS, null, null);
             }
 
             R.id.delete -> {
-                if (!id.equalsIgnoreCase("")) {
-                    val read = database.delete(
+                if (!id.equals("")) {
+                    val read = database!!.delete(
                         DBHelper.TABLE_PERSONS,
                         DBHelper.KEY_ID + "= " + id, null
                     )
@@ -87,11 +87,11 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
             }
 
             R.id.refresh -> {
-                if (!id.equalsIgnoreCase("")) {
+                if (!id.equals("")) {
 
                     contentValues.put(DBHelper.KEY_MAIL, email);
                     contentValues.put(DBHelper.KEY_NAME, name);
-                    val read = database.update(DBHelper.TABLE_PERSONS,
+                    val read = database!!.update(DBHelper.TABLE_PERSONS,
                         contentValues, DBHelper.KEY_ID + "= ?", Array<String>(10) { id });
                     Log.d("mLog", "Обновлено строк = " + read);
                 }
